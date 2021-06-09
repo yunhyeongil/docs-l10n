@@ -24,8 +24,8 @@ TensorFlow Lite는 다음과 같이 다양한 계층의 배포 요구 사항을 
 
 ## 메타데이터로 사전 훈련된 모델 탐색
 
-[TensorFlow Lite 호스팅 모델](https://www.tensorflow.org/lite/guide/hosted_models) 및 [TensorFlow Hub](https://tfhub.dev/s?deployment-format=lite)를 검색하여 비전 및 텍스트 작업에 모두 사용할 수 있는 메타데이터가 포함된 사전 훈련된 모델을 다운로드하세요. 또한 [메타데이터를 시각화](../convert/metadata.md#visualize-the-metadata)하는 다양한 옵션을 참조하세요.
+[TensorFlow Lite 호스팅 모델](https://www.tensorflow.org/lite/guide/hosted_models) 및 [TensorFlow Hub](https://tfhub.dev/s?deployment-format=lite)를 검색하여 비전 및 텍스트 작업에 모두 사용할 수 있는 메타데이터가 포함된 사전 훈련된 모델을 다운로드하세요. 또한 [메타데이터 시각화](../convert/metadata.md#visualize-the-metadata)의 다양한 옵션을 참조하세요.
 
 ## TensorFlow Lite Support GitHub 저장소
 
-더 많은 예제와 소스 코드를 보려면 [TensorFlow Lite 지원 GitHub 저장소](https://github.com/tensorflow/tflite-support)를 방문하세요. [새로운 GitHub 문제](https://github.com/tensorflow/tflite-support/issues/new)를 생성하여 피드백을 알려주세요.
+더 많은 예제와 소스 코드를 보려면 [TensorFlow Lite Support GitHub 저장소](https://github.com/tensorflow/tflite-support)를 방문하세요. [새로운 GitHub 문제](https://github.com/tensorflow/tflite-support/issues/new)를 생성하여 피드백을 보내주세요.
