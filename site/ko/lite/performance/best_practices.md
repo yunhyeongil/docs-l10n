@@ -10,7 +10,7 @@ Mobile and embedded devices have limited computational resources, so it is impor
 
 ![Graph of accuracy vs latency](../images/performance/accuracy_vs_latency.png "정확도 대 지연")
 
-One example of models optimized for mobile devices are [MobileNets](https://arxiv.org/abs/1704.04861), which are optimized for mobile vision applications. [Hosted models](../guide/hosted_models.md) lists several other models that have been optimized specifically for mobile and embedded devices.
+모바일 기기에 최적화된 모델의 한 가지 예는 모바일 비전 애플리케이션에 최적화된 [MobileNet](https://arxiv.org/abs/1704.04861)입니다. [호스팅된 모델](../guide/hosted_models.md)에는 모바일 및 임베디드 기기에 특별히 최적화된 몇 가지 다른 모델이 나열되어 있습니다.
 
 You can retrain the listed models on your own dataset by using transfer learning. Check out our transfer learning tutorial for [image classification](/lite/tutorials/model_maker_image_classification) and [object detection](https://medium.com/tensorflow/training-and-serving-a-realtime-mobile-object-detector-in-30-minutes-with-cloud-tpus-b78971cf1193).
 
@@ -50,7 +50,7 @@ TensorFlow Lite has added new ways to accelerate models with faster hardware lik
 
 - Android의 [Neural Networks API](https://developer.android.com/ndk/guides/neuralnetworks/) 사용하기. 하드웨어 가속기 백엔드를 활용하여 모델의 속도와 효율성을 개선할 수 있습니다. Neural Networks API를 활성화하려면 [NNAPI 대리자](nnapi.md) 가이드를 확인하세요.
 - GPU 대리자는 각각 OpenGL/OpenCL 및 Metal을 사용하여 Android 및 iOS에서 사용할 수 있습니다. 사용해 보려면 [GPU 대리자 튜토리얼](gpu.md) 및 [설명서](gpu_advanced.md)를 참조하세요.
-- Hexagon delegate is available on Android. It leverages the Qualcomm Hexagon DSP if it is available on the device. See the [Hexagon delegate tutorial](hexagon_delegate.md) for more information.
+- Hexagon 대리자는 Android에서 사용할 수 있습니다. 기기에서 사용할 수 있는 경우 Qualcomm Hexagon DSP를 활용합니다. 자세한 내용은 [Hexagon 대리자 튜토리얼](hexagon_delegate.md)을 참조하세요.
 - It is possible to create your own delegate if you have access to non-standard hardware. See [TensorFlow Lite delegates](delegates.md) for more information.
 
 일부 가속기는 다른 유형의 모델에 대해 더 잘 동작합니다. 일부 대리자는 특정 방식으로 최적화된 부동 모델 또는 모델만 지원합니다. 각 대리자를 [벤치마킹](measurement.md)하여 애플리케이션에 적합한지 확인하는 것이 중요합니다. 예를 들어 모델이 매우 작은 경우 모델을 NN API 또는 GPU에 위임하기에 적합하지 않습니다. 반대로, 가속기는 산술 강도가 높은 대형 모델에 사용하기 적합합니다.
