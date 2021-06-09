@@ -4,7 +4,7 @@ Mobile and embedded devices have limited computational resources, so it is impor
 
 ## 작업에 가장 적합한 모델 선택
 
-Depending on the task, you will need to make a tradeoff between model complexity and size. If your task requires high accuracy, then you may need a large and complex model. For tasks that require less precision, it is better to use a smaller model because they not only use less disk space and memory, but they are also generally faster and more energy efficient. For example, graphs below show accuracy and latency tradeoffs for some common image classification models.
+작업에 따라 모델 복잡성과 크기 간에 균형을 맞춰야 합니다. 작업에 높은 정확성이 필요하다면 크고 복잡한 모델이 필요할 수 있습니다. 정밀도가 낮은 작업의 경우 디스크 공간과 메모리를 적게 사용할 뿐만 아니라 일반적으로 더 빠르고 에너지 효율적이기 때문에 더 작은 모델을 사용하는 것이 좋습니다. 예를 들어 아래 그래프는 몇 가지 일반적인 이미지 분류 모델에 대한 정확성과 지연 시간 절충을 보여줍니다.
 
 ![Graph of model size vs accuracy](../images/performance/model_size_vs_accuracy.png "모델 크기 대 정확도")
 
@@ -18,11 +18,11 @@ You can retrain the listed models on your own dataset by using transfer learning
 
 Once you have selected a candidate model that is right for your task, it is a good practice to profile and benchmark your model. TensorFlow Lite [benchmarking tool](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/lite/tools/benchmark) has a built-in profiler that shows per operator profiling statistics. This can help in understanding performance bottlenecks and which operators dominate the computation time.
 
-You can also use [TensorFlow Lite tracing](measurement.md#trace_tensorflow_lite_internals_in_android) to profile the model in your Android application, using standard Android system tracing, and to visualize the operator invocations by time with GUI based profiling tools.
+또한, [TensrFlow Lite 추적](measurement.md#trace_tensorflow_lite_internals_in_android)을 사용하여 Android 애플리케이션에서 표준 Android 시스템 추적을 사용하여 모델을 프로파일링하고, GUI 기반 프로파일링 도구로 시간별로 연산자 호출을 시각화할 수 있습니다.
 
-## Profile and optimize operators in the graph
+## 그래프에서 연산자 프로파일링 및 최적화
 
-If a particular operator appears frequently in the model and, based on profiling, you find that the operator consumes the most amount of time, you can look into optimizing that operator. This scenario should be rare as TensorFlow Lite has optimized versions for most operators. However, you may be able to write a faster version of a custom op if you know the constraints in which the operator is executed. Check out our [custom operator documentation](../custom_operators.md).
+특정 연산자가 모델에 자주 나타나고 프로파일링을 기반으로 해당 연산자가 가장 많은 시간을 소비하는 경우 이 연산자를 최적화할 수 있습니다. TensorFlow Lite는 대부분의 연산자를 위해 최적화된 버전을 가지고 있으므로 이러한 상황이 발생하는 경우는 드뭅니다. 그러나 연산자가 실행되는 제약 조건을 알고 있는 경우 사용자 정의 작업의 더 빠른 버전을 작성할 수 있습니다. [사용자 정의 연산자 설명서](../custom_operators.md)를 확인하세요.
 
 ## 모델 최적화
 
@@ -38,23 +38,23 @@ For some applications, latency may be more important than energy efficiency. You
 
 ## 중복 사본 제거
 
-If your application is not carefully designed, there can be redundant copies when feeding the input to and reading the output from the model. Make sure to eliminate redundant copies. If you are using higher level APIs, like Java, make sure to carefully check the documentation for performance caveats. For example, the Java API is a lot faster if `ByteBuffers` are used as [inputs](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/lite/java/src/main/java/org/tensorflow/lite/Interpreter.java#L175).
+애플리케이션이 신중하게 설계되지 않은 경우 모델에 입력을 공급하고 모델에서 출력을 읽을 때 중복 사본이 있을 수 있습니다. 중복된 사본은 제거하십시오. Java와 같은 더 높은 수준의 API를 사용하는 경우 설명서에서 성능 주의사항을 확인하세요. 예를 들어 Java API는 `ByteBuffers`가 [입력](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/lite/java/src/main/java/org/tensorflow/lite/Interpreter.java#L175)으로 사용되는 경우 훨씬 빠릅니다.
 
-## Profile your application with platform specific tools
+## 플랫폼별 도구로 애플리케이션 프로파일링
 
 Platform specific tools like [Android profiler](https://developer.android.com/studio/profile/android-profiler) and [Instruments](https://help.apple.com/instruments/mac/current/) provide a wealth of profiling information that can be used to debug your app. Sometimes the performance bug may be not in the model but in parts of application code that interact with the model. Make sure to familiarize yourself with platform specific profiling tools and best practices for your platform.
 
-## Evaluate whether your model benefits from using hardware accelerators available on the device
+## 기기에서 사용 가능한 하드웨어 가속기로 모델이 얻는 이점 평가
 
 TensorFlow Lite has added new ways to accelerate models with faster hardware like GPUs, DSPs, and neural accelerators. Typically, these accelerators are exposed through [delegate](delegates.md) submodules that take over parts of the interpreter execution. TensorFlow Lite can use delegates by:
 
-- Using Android's [Neural Networks API](https://developer.android.com/ndk/guides/neuralnetworks/). You can utilize these hardware accelerator backends to improve the speed and efficiency of your model. To enable the Neural Networks API, check out the [NNAPI delegate](nnapi.md) guide.
-- GPU delegate is available on Android and iOS, using OpenGL/OpenCL and Metal, respectively. To try them out, see the [GPU delegate tutorial](gpu.md) and [documentation](gpu_advanced.md).
+- Android의 [Neural Networks API](https://developer.android.com/ndk/guides/neuralnetworks/) 사용하기. 하드웨어 가속기 백엔드를 활용하여 모델의 속도와 효율성을 개선할 수 있습니다. Neural Networks API를 활성화하려면 [NNAPI 대리자](nnapi.md) 가이드를 확인하세요.
+- GPU 대리자는 각각 OpenGL/OpenCL 및 Metal을 사용하여 Android 및 iOS에서 사용할 수 있습니다. 사용해 보려면 [GPU 대리자 튜토리얼](gpu.md) 및 [설명서](gpu_advanced.md)를 참조하세요.
 - Hexagon delegate is available on Android. It leverages the Qualcomm Hexagon DSP if it is available on the device. See the [Hexagon delegate tutorial](hexagon_delegate.md) for more information.
 - It is possible to create your own delegate if you have access to non-standard hardware. See [TensorFlow Lite delegates](delegates.md) for more information.
 
-Be aware that some accelerators work better for different types of models. Some delegates only support float models or models optimized in a specific way. It is important to [benchmark](measurement.md) each delegate to see if it is a good choice for your application. For example, if you have a very small model, it may not be worth delegating the model to either the NN API or the GPU. Conversely, accelerators are a great choice for large models that have high arithmetic intensity.
+일부 가속기는 다른 유형의 모델에 대해 더 잘 동작합니다. 일부 대리자는 특정 방식으로 최적화된 부동 모델 또는 모델만 지원합니다. 각 대리자를 [벤치마킹](measurement.md)하여 애플리케이션에 적합한지 확인하는 것이 중요합니다. 예를 들어 모델이 매우 작은 경우 모델을 NN API 또는 GPU에 위임하기에 적합하지 않습니다. 반대로, 가속기는 산술 강도가 높은 대형 모델에 사용하기 적합합니다.
 
-## Need more help
+## 추가적인 도움이 필요한 경우
 
-The TensorFlow team is happy to help diagnose and address specific performance issues you may be facing. Please file an issue on [GitHub](https://github.com/tensorflow/tensorflow/issues) with details of the issue.
+TensorFlow 팀은 직면할 수 있는 특정 성능 문제를 진단하고 해결하도록 기꺼이 도움을 드립니다. [GitHub](https://github.com/tensorflow/tensorflow/issues)에 대한 문제를 세부 정보와 함께 제출해주십시오.
